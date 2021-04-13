@@ -11,9 +11,9 @@ exports.addUser = async (req, res, next) => {
         if (validationResult(req.body).isEmpty()) {
             // console.log(req.body)
             const unique = await Unique_code.findOne({ where: { voucher: req.body.unique_code } })
-            // console.log(unique.used)
+            console.log(unique)
             // console.log(unique.used, "check")
-            if (unique.used) {
+            if (unique == null || unique.used) {
                 res.status(401).send('Check unique code')
             }
             else {
