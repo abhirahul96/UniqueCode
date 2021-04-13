@@ -6,12 +6,12 @@ const { validationResult } = require('express-validator');
 const { options } = require('../model/userModel');
 exports.addUser = async (req, res, next) => {
     try {
-        console.log(req.file)
+        // console.log(req.file)
         // console.log(validationResult(req.body).isEmpty())
         if (validationResult(req.body).isEmpty()) {
             // console.log(req.body)
             const unique = await Unique_code.findOne({ where: { voucher: req.body.unique_code } })
-            console.log(unique.used)
+            // console.log(unique.used)
             // console.log(unique.used, "check")
             if (unique.used) {
                 res.status(401).send('Check unique code')
