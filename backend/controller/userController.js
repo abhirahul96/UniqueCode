@@ -6,15 +6,19 @@ const { validationResult } = require('express-validator');
 const { options } = require('../model/userModel');
 exports.addUser = async (req, res, next) => {
     try {
+
+        res.header("Access-Control-Allow-Origin", 'http://127.0.0.1:5500/');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+        res.header("strict-origin-when-cross-origin", "http://127.0.0.1:5500/")
         // console.log(req.file)
         // console.log(validationResult(req.body).isEmpty())
         if (validationResult(req.body).isEmpty()) {
             // console.log(req.body)
             const unique = await Unique_code.findOne({ where: { voucher: req.body.unique_code } })
-            console.log(unique)
+            // console.log(unique)
             // console.log(unique.used, "check")
             if (unique == null || unique.used) {
-                res.status(401).send('Check unique code')
+                return res.status(404).send('Check unique code')
             }
             else {
                 const buffer = await sharp(req.file.buffer).png().resize(300, 300, { fit: sharp.fit.cover, withoutEnlargement: true }).toBuffer();
@@ -29,17 +33,17 @@ exports.addUser = async (req, res, next) => {
                     // console.log("hello")
                     // console.log(result, "result")
                     await unique.update({ used: 'true' })
-                    res.status(200).send('Thank You')
-                }).catch(err => { res.status(401).send(err) })
+                    return res.status(200).send('Thank You')
+                }).catch(err => { return res.status(401).send(err) })
             }
 
         }
         else {
-            res.status(401).send(new Error(validationResult(req)))
+            return res.status(401).send(new Error(validationResult(req)))
         }
 
     } catch (err) {
-        res.status(400).send(err);
+        return res.status(400).send(err);
     }
 
 }

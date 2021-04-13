@@ -5,5 +5,6 @@ exports.validateData = [
     body('Name', 'Name is required').exists(),
     body('phone', 'phone should be valid and is required').isLength({ min: 10 }).exists(),
     body('address', 'address is required').exists(),
-    body('unique_code', 'unique_code is required').exists()
+    body('unique_code', 'unique_code is required').exists(),
+    body('avatar', 'avatar is required').exists()
 ];

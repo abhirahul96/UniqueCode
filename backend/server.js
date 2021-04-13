@@ -2,9 +2,15 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const sequelize = require('./db/sql')
-
+const path = require('path')
+const cors = require('cors')
+app.use(cors())
 const userRoute = require('./routes/userRoute')
 app.use(express.json());
+
+const publicDirectoryPath = path.join(__dirname, '../Public')
+const viewsPath = path.join(__dirname, '../Views')
+
 app.use('/user', userRoute)
 // const Unique_code = require('./model/unique_code')
 // const fs = require('fs');
