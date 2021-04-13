@@ -26,9 +26,11 @@ const User = sequelize.define('user', {
     },
     unique_code: {
         type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
+        allowNull: false
     },
+    image: {
+        type: Sequelize.BLOB("long")
+    }
 })
 
 module.exports = User

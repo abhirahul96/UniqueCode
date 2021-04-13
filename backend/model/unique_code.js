@@ -8,9 +8,9 @@ const unique_code = sequelize.define('unique_code', {
         primaryKey: true
     },
     used: {
-        type: Sequelize.STRING,
+        type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: 'false'
+        defaultValue: false
     }
 })
 
