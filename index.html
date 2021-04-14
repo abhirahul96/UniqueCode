@@ -192,7 +192,7 @@
 					<div style="background-color:#6785c0;"><Span id="form-title">Please fill below form to verifiy to
 							your purchase</span></div>
 					<div id="form-content">
-						<form class="form_control">
+						<form id="form_control" onsubmit="send(event)">
 							<input type="text" id="name" placeholder="Name" required />
 							<input type="email" id="email" placeholder="Email" required />
 							<input type="text" id="phone" placeholder="Mobile Number" required
@@ -202,7 +202,7 @@
 							<span style="color:#fff;">Upload your pic: </span> <input type="file"
 								accept="image/gif, image/jpeg, image/png" placeholder="Upload your pic" id="avatar"
 								required />
-							<input type="Submit" onclick="send(event)" />
+							<input type="Submit" />
 						</form>
 					</div>
 				</div>

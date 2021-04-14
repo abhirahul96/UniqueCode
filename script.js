@@ -93,12 +93,15 @@ function send(event) {
     try {
         fetch("http://localhost:3000/user/add-user", requestOptions)
             .then(response => response.text())
-            .then(res => error.textContent = res)
+            .then(res => {
+                document.getElementById('form_control').reset();
+                error.textContent = res
+            })
             .catch(err => {
                 error.textContent = err
             });
     } catch (err) {
         error.textContent = err
     }
-    event.preventDefault();
+
 }
